@@ -1,0 +1,68 @@
+.playing {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-left:px2rem(15);
+  .showingList-item{
+    display: flex;
+    padding: px2rem(15) px2rem(15) px2rem(15) 0;
+    border-bottom:1px solid #d2d6dc;
+    justify-content:space-between;
+    align-items: center;
+    .film-photo{
+      img{
+        width:px2rem(66);
+        height: auto;
+      }
+    }
+    .film-info{
+      padding: 0 px2rem(10);
+      .info-col{
+        width:px2rem(200) ;
+        height: px2rem(22);
+        line-height:px2rem(22);
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        .label{
+          font-size:px2rem(13);
+          margin-top:px2rem(4);
+          color: #797d82;
+        }
+      }
+      .film-info-tit{
+        .tit{
+          color: #191a1b;
+          font-size: px2rem(16);
+          margin-right:px2rem(5);
+        }
+        .type {
+          font-size:px2rem(9);
+          color: #fff;
+          background-color: #d2d6dc;
+          height: px2rem(14);
+          line-height:px2rem(14);
+          padding: 0 2px;
+          border-radius: 2px;
+        }
+      }
+      .film-info-grade{
+        .grade{
+          color: #ffb232;
+          font-size: px2rem(14);
+        }
+      }
+    }
+    .film-buying{
+      line-height: px2rem(25);
+      height: px2rem(25);
+      width:px2rem(50);
+      color: #ff5f16;
+      font-size: px2rem(13);
+      text-align: center;
+      border-radius:px2rem(2);
+      border: 1px solid #ff5f16;
+    }
+  }
+}

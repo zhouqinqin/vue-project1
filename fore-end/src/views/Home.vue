@@ -7,7 +7,8 @@
 </template>
 
 <script>
-import NavBar from '../components/NavBar';
+import NavBar from '../components/NavBar.vue';
+// import Films from './Films.vue';
 
 export default {
   name: 'Home',

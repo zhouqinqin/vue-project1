@@ -13,12 +13,15 @@
     <!-- tab-bar -->
     <div class="tab-bar-wrapper">
       <ul class="tab-bar">
-        <li class="active">
-          <span>正在热映</span>
-        </li>
-        <li>
-          <span>即将上映</span>
-        </li>
+        <router-link
+            v-for="(item, index) in bars"
+            :key="index"
+            :to="{ name: item.id}"
+            :class="item.id"
+            tag="li"
+            active-class="z-act">
+          <span>{{item.name}}</span>
+         </router-link>
       </ul>
     </div>
     <!-- /tab-bar -->
@@ -29,7 +32,10 @@
 </template>
 
 <script>
+/* eslint-disable */
 import Banner from '../components/Banner';
+import nowplaying from '../components/NowPlay';
+import comingSoon from '../components/SoonPlay';
 export default {
   name: 'Films',
   components: {
@@ -37,7 +43,17 @@ export default {
   },
   data () {
     return {
-      curCity: ''
+      curCity: '',
+      bars: [
+        {
+          id: 'nowPlaying',
+          name: '正在热映',
+        },
+        {
+          id: 'comingSoon',
+          name: '即将上映',
+        }
+      ]
     }
   },
   methods: {
@@ -48,7 +64,19 @@ export default {
       myCity.get((result) => {
         this.curCity = result.name;
       })
-    }
+    },
+    // 切换路由
+    //   switchList (type) {
+    //   if (type === 'now') {
+    //     // this.$router.push('/films/nowPlaying');
+
+    //     this.$router.push({
+    //       name: 'nowPlaying'
+    //     })
+    //   } else {
+    //     this.$router.push('/films/comingSoon');
+    //   }
+    // }
   },
   created () {
     this.getCityName();
@@ -90,7 +118,7 @@ export default {
   .tab-bar {
     display: flex;
     height: px2rem(50);
-    align-items: center;
+    line-height: px2rem(50);
     li {
       flex: 1;
       text-align: center;

@@ -1,5 +1,5 @@
 <template>
-  <div class="comingSoon playing">
+  <div class="nowplaying playing">
     <li class="showingList-item">
       <div class="film-photo">
         <img src="../../static/images/movie28.jpg">
@@ -31,9 +31,9 @@
 </template>
 
 <script>
-
+// 暴露组件
 export default {
-  name: 'comingSoon'
+  name: 'nowplaying'
 
 }
 </script>

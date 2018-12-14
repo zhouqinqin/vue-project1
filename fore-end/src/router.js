@@ -1,7 +1,7 @@
 // 引用路由相关模块
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-// 引入路由组件
+// 引入路由组件,这些组件是同步的
 // import Films from './views/Films.vue';
 // import Cinema from './views/Cinema.vue';
 // import Center from './views/Center.vue';
@@ -19,15 +19,19 @@ const router = new VueRouter({
       component: () => import('./views/Home.vue'),
       children: [
         {
+          path: '',
+          redirect: '/films/nowPlaying'
+        },
+        {
           // 首页
           path: 'films',
           name: 'films',
           component: () => import('./views/Films.vue'),
           children: [
             {
-              path: 'nowplaying',
+              path: 'nowPlaying',
               name: 'nowPlaying',
-              component: () => import('./components/NowPaly')
+              component: () => import('./components/NowPlay')
             },
             {
               path: 'comingSoon',
