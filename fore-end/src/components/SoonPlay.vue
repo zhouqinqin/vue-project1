@@ -88,7 +88,7 @@ export default {
           return item.name;
         });
 
-        return arr.join('');
+        return arr.join(' ');
       }
     }
   },

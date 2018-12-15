@@ -89,7 +89,7 @@ export default {
           return item.name;
         });
 
-        return arr.join('');
+        return arr.join(' ');
       }
     },
     // 点击进入详情页
