@@ -1,7 +1,14 @@
 <template>
   <div class="home">
     <!-- 子路由films/center/ciemas的坑 -->
-    <router-view></router-view>
+    <transition
+      mode="out-in"
+      enter-active-class="animated bounceInUp"
+      leave-active-class="animated bounceOutDown"
+    >
+      <router-view></router-view>
+    </transition>
+
     <NavBar></NavBar>
   </div>
 </template>
