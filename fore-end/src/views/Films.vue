@@ -64,19 +64,8 @@ export default {
       myCity.get((result) => {
         this.curCity = result.name;
       })
-    },
-    // 切换路由
-    //   switchList (type) {
-    //   if (type === 'now') {
-    //     // this.$router.push('/films/nowPlaying');
+    }
 
-    //     this.$router.push({
-    //       name: 'nowPlaying'
-    //     })
-    //   } else {
-    //     this.$router.push('/films/comingSoon');
-    //   }
-    // }
   },
   created () {
     this.getCityName();

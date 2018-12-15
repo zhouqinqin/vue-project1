@@ -1,9 +1,9 @@
 .playing {
-  display: flex;
+  // display: flex;
   flex-direction: column;
   height: 100%;
   margin-left:px2rem(15);
-  .showingList-item{
+  li{
     display: flex;
     padding: px2rem(15) px2rem(15) px2rem(15) 0;
     border-bottom:1px solid #d2d6dc;
@@ -64,5 +64,12 @@
       border-radius:px2rem(2);
       border: 1px solid #ff5f16;
     }
+  }
+  .load-more {
+    height: px2rem(30);
+    line-height: px2rem(30);
+    text-align: center;
+    font-size:px2rem(14);
+    color:#797d82;
   }
 }
