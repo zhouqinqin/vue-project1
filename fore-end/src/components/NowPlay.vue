@@ -35,7 +35,7 @@
 
 <script>
 import axios from 'axios';
-// 暴露组件
+// 暴露组件``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 export default {
   name: 'nowplaying',
   data () {
@@ -55,7 +55,8 @@ export default {
         params: {
           // 请求的参数
           pageNum: this.pageNum,
-          pageSize: this.pageSize
+          pageSize: this.pageSize,
+          isPresale: true
         }
       }).then((response) => {
         // PS: res 不单单包含后台给的数据，还有一些个额外的东西。

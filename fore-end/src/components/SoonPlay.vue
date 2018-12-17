@@ -2,7 +2,8 @@
   <div class="comingSoon playing">
      <li
         v-for="(item, index) in films"
-        :key="index">
+        :key="index"
+        @click="goDetail(item.filmId)">
       <div class="film-photo">
         <img :src="item.poster" >
       </div>
@@ -54,7 +55,7 @@ export default {
           // 请求的参数
           pageNum: this.pageNum,
           pageSize: this.pageSize,
-          type: 2
+          isPresale: false
         }
       }).then((response) => {
         // PS: res 不单单包含后台给的数据，还有一些个额外的东西。
@@ -90,6 +91,17 @@ export default {
 
         return arr.join(' ');
       }
+    },
+    // 点击进入详情页
+    goDetail (id) {
+      this.$router.push({
+        // path: '/film/' + id,
+        // path: `/film/${id}`,
+        name: 'filmDetail',
+        params: {
+          filmId: id
+        }
+      })
     }
   },
 
