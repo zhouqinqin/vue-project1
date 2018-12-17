@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="filmMain">
     <mt-header fixed title="" class="head">
       <div slot="left">
         <mt-button v-link="'/'" icon="back"></mt-button>
@@ -33,9 +33,28 @@
           {{film.synopsis}}
         </div>
         <div class="toggle">
-          <i class="iconfont icon-xiala"></i>
+          <i class="iconfont icon-xiangxia1"></i>
         </div>
       </div>
+    </div>
+    <div class="actors">
+      <div class="actors-title-bar">
+        <span>演职人员</span>
+      </div>
+      <div class="actors-list-bar">
+        <ul class="actors-list">
+           <li class="actors-item"
+            v-for="(item, index) in actors"
+            :key="index">
+            <img class="actors-img" :src= 'item.avatarAddress' alt="">
+            <span class="actors-msg actors-name">{{item.name}}</span>
+            <span  class="actors-msg actors-role">{{item.role}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="photos">
+
     </div>
     <mt-button class="buy-btn" type="default">选座购票</mt-button>
   </div>
@@ -53,7 +72,8 @@ export default {
 
   data () {
     return {
-      film: ''
+      film: '',
+      actors: []
 
     }
   },
@@ -71,8 +91,9 @@ export default {
         // console.log(response);
         let result = response.data;
         let data = result.data.info;
+        // let actors = data.actors;
         // console.log(result)
-        console.log(data);
+        // console.log(actors);
         if (result.code === 0) {
           // 把数据中的秒改为年月日的形式
           var da = data.premiereAt * 1000;
@@ -82,6 +103,8 @@ export default {
           var date = da.getDate();
           data.premiereAt = [year, month, date].join('-');
           this.film = data;
+          this.actors = data.actors;
+          console.log(this.actors);
         } else {
           alert(result.msg)
         }
@@ -96,110 +119,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/styles/common/px2rem.scss';
-.mint-header{
-  background:none;
-  height: px2rem(44);
-  font-size: px2rem( 17)
-}
-.mintui{
-  font-size: px2rem( 17)
-}
-.buy-btn{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  height: px2rem(49);
-  width: 100%;
-  text-align: center;
-  background-color: #ff5f16;
-  color: #fff;
-  font-size: px2rem(16);
-  line-height:px2rem(49);
-}
-.film-detail {
-  flex: 1;
-  overflow-y: auto;
-
-  .film-poster {
-    height: px2rem(210);
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .film-detail {
-    padding: px2rem(15);
-    padding-top: px2rem(12);
-    background-color: #fff;
-
-    .col {
-      display: flex;
-      align-items: center;
-    }
-
-    .film-name {
-      flex: 1;
-      display: flex;
-      align-items: center;
-
-      .name {
-        color: #191a1b;
-        font-size: px2rem(18);
-        height: px2rem(24);
-        line-height: px2rem(24);
-        margin-right: px2rem(8);
-      }
-
-      .item {
-        font-size: px2rem(12);
-        color: #fff;
-        background-color: #d2d6dc;
-        height: px2rem(14);
-        line-height: px2rem(14);
-        padding: 0 px2rem(2);
-        border-radius: px2rem(2);
-        display: inline-block;
-      }
-    }
-
-    .film-grade {
-      flex-shrink: 0;
-      width: px2rem(100);
-      text-align: right;
-      color: #ffb232;
-      font-size: px2rem(12);
-
-      .grade {
-        font-size: px2rem(18);
-        font-style: italic;
-      }
-    }
-
-    .grey-text {
-      font-size: px2rem(13);
-      line-height: px2rem(20);
-      color: #797d82;
-      margin-top: px2rem(4);
-    }
-
-    .film-synopsis {
-      margin-top: px2rem(8);
-      overflow: hidden;
-      &.hide {
-        height: px2rem(40);
-      }
-    }
-
-    .toggle {
-      text-align: center;
-      &.hide {
-        i {
-          transform: translate(180deg);
-        }
-      }
-    }
-  }
-}
+// 注意：这两个文件的顺序不能颠倒，否则会没有效果
+@import '../styles/common/px2rem.scss';
+@import '../styles/filmDetail.scss';
 </style>
