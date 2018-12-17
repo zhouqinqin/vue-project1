@@ -1,42 +1,55 @@
 <template>
-  <div class="film-detail">
-    <div class="film-poster">
-      <img :src= 'film.poster' alt="">
-    </div>
-
+  <div>
+    <mt-header fixed title="" class="head">
+      <div slot="left">
+        <mt-button v-link="'/'" icon="back"></mt-button>
+      </div>
+    </mt-header>
     <div class="film-detail">
-      <div class="col">
-        <div class="film-name">
-          <span class="name">{{ film.filmName }}</span>
-          <span class="item">{{film.filmType.name}}</span>
-        </div>
-        <div class="film-grade">
-          <span class="grade">{{film.grade}}</span>
-          <span class="grade-text">分</span>
-        </div>
+      <div class="film-poster">
+        <img :src= 'film.poster' alt="">
       </div>
 
-      <div class="film-category grey-text">{{film.category}}</div>
-      <div class="film-premiere-time grey-text">
-        {{film.premiereAt}}上映
-      </div>
-      <div class="film-nation-runtime grey-text">
-        {{film.nation}}  | {{film.runtime}}分钟
-      </div>
-      <div class="film-synopsis grey-text">
-        {{film.synopsis}}
-      </div>
-      <div class="toggle">
-        <i class="iconfont icon-xiala"></i>
+      <div class="film-detail">
+        <div class="col">
+          <div class="film-name">
+            <span class="name">{{ film.name }}</span>
+            <span class="item">{{film.filmType.name}}</span>
+          </div>
+          <div class="film-grade">
+            <span class="grade">{{film.grade}}</span>
+            <span class="grade-text">分</span>
+          </div>
+        </div>
+
+        <div class="film-category grey-text">{{film.category}}</div>
+        <div class="film-premiere-time grey-text">
+          {{film.premiereAt}}上映
+        </div>
+        <div class="film-nation-runtime grey-text">
+          {{film.nation}}  | {{film.runtime}}分钟
+        </div>
+        <div class="film-synopsis grey-text">
+          {{film.synopsis}}
+        </div>
+        <div class="toggle">
+          <i class="iconfont icon-xiala"></i>
+        </div>
       </div>
     </div>
+    <mt-button class="buy-btn" type="default">选座购票</mt-button>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import { Header, Button } from 'mint-ui'
 export default {
   name: 'FilmDetail',
+  components: {
+    'mt-header': Header,
+    'mt-button': Button
+  },
 
   data () {
     return {
@@ -55,11 +68,11 @@ export default {
       }).then((response) => {
         // PS: res 不单单包含后台给的数据，还有一些个额外的东西。
         // (data,headers,request,status等)
-        console.log(response);
+        // console.log(response);
         let result = response.data;
         let data = result.data.info;
         // console.log(result)
-        // console.log(data);
+        console.log(data);
         if (result.code === 0) {
           // 把数据中的秒改为年月日的形式
           var da = data.premiereAt * 1000;
@@ -84,7 +97,26 @@ export default {
 
 <style lang="scss">
 @import '@/styles/common/px2rem.scss';
-
+.mint-header{
+  background:none;
+  height: px2rem(44);
+  font-size: px2rem( 17)
+}
+.mintui{
+  font-size: px2rem( 17)
+}
+.buy-btn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: px2rem(49);
+  width: 100%;
+  text-align: center;
+  background-color: #ff5f16;
+  color: #fff;
+  font-size: px2rem(16);
+  line-height:px2rem(49);
+}
 .film-detail {
   flex: 1;
   overflow-y: auto;

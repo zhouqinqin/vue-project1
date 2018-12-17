@@ -13,8 +13,8 @@
           <span class="type">{{ item.filmType.name }}</span>
         </div>
         <div class="film-info-grade info-col">
-          <span class="label">观众评分</span>
-          <span class="grade">{{ item.grade }}</span>
+          <!-- <span class="label">观众评分</span>
+          <span class="grade">{{ item.grade }}</span> -->
         </div>
         <div class="film-info-actors info-col">
           <span class="label">
