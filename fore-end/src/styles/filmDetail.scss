@@ -12,7 +12,8 @@
   font-size: px2rem( 17)
 }
 .mintui{
-  font-size: px2rem( 17)
+  font-size: px2rem( 17);
+  //  color:#191a1b
 }
 
 .film-detail {
@@ -153,7 +154,7 @@
   height:px2rem(85)
 }
 .actors-msg  {
-  margin-top: px2rem(10);
+  padding: px2rem(3) 0;
   font-size: px2rem(12);
   text-align: center;
   color: #191a1b;
@@ -165,6 +166,13 @@
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.actors-name{
+  margin-top:10px;
+}
+.actors-role{
+  font-size: px2rem(10);
+  color: #797d82;
 }
 .photos{
   margin-bottom: px2rem(60);

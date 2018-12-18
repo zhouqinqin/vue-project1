@@ -29,6 +29,10 @@ const router = new VueRouter({
           component: () => import('./views/Films.vue'),
           children: [
             {
+              path: '',
+              redirect: '/films/nowPlaying'
+            },
+            {
               path: 'nowPlaying',
               name: 'nowPlaying',
               component: () => import('./components/NowPlay')
@@ -38,6 +42,7 @@ const router = new VueRouter({
               name: 'comingSoon',
               component: () => import('./components/SoonPlay')
             }
+
           ]
         },
         {
@@ -67,6 +72,11 @@ const router = new VueRouter({
       path: '/film/:filmId',
       name: 'filmDetail',
       component: () => import('./views/FilmDetail.vue')
+    },
+    {
+      path: '/login',
+      name: 'filmDetail',
+      component: () => import('./views/Login.vue')
     },
     {
       path: '*',

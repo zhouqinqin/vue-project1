@@ -23,7 +23,7 @@ export default {
     return {
       bars: [
         {
-          id: 'films',
+          id: 'nowPlaying',
           name: '电影',
           icon: 'iconfont icon-dianying'
         },

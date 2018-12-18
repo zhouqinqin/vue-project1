@@ -1,20 +1,20 @@
 <template>
   <div class="filmMain">
-    <mt-header fixed title="" class="head">
-      <div slot="left">
-        <mt-button v-link="'/'" icon="back"></mt-button>
-      </div>
+    <mt-header fixed title="">
+      <router-link to="/"  slot="left">
+        <mt-button icon="back"></mt-button>
+      </router-link>
     </mt-header>
     <div class="film-detail">
       <div class="film-poster">
-        <img :src= 'film.poster' alt="">
+        <img :src= "film.poster" alt="">
       </div>
 
       <div class="film-detail">
         <div class="col">
           <div class="film-name">
             <span class="name">{{ film.name }}</span>
-            <span class="item">{{film.filmType.name}}</span>
+            <span class="item">{{film.filmType && film.filmType.name}}</span>
           </div>
           <div class="film-grade">
             <span class="grade">{{film.grade}}</span>
@@ -46,7 +46,7 @@
            <li class="actors-item"
             v-for="(item, index) in actors"
             :key="index">
-            <img class="actors-img" :src= 'item.avatarAddress' alt="">
+            <img class="actors-img" :src= "item.avatarAddress" alt="">
             <span class="actors-msg actors-name">{{item.name}}</span>
             <span  class="actors-msg actors-role">{{item.role}}</span>
           </li>
@@ -88,12 +88,10 @@ export default {
       }).then((response) => {
         // PS: res 不单单包含后台给的数据，还有一些个额外的东西。
         // (data,headers,request,status等)
-        // console.log(response);
+        console.log(response);
         let result = response.data;
         let data = result.data.info;
-        // let actors = data.actors;
         // console.log(result)
-        // console.log(actors);
         if (result.code === 0) {
           // 把数据中的秒改为年月日的形式
           var da = data.premiereAt * 1000;
@@ -104,7 +102,7 @@ export default {
           data.premiereAt = [year, month, date].join('-');
           this.film = data;
           this.actors = data.actors;
-          console.log(this.actors);
+          // console.log(this.actors);
         } else {
           alert(result.msg)
         }
