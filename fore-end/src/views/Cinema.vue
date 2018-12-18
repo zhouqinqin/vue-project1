@@ -1,7 +1,7 @@
 <template>
   <div class="cinemas-list">
-    <mt-header fixed title="影院">
-      <router-link to="/" slot="left">
+    <mt-header fixed title="影院" id="header">
+      <router-link to="/address" slot="left">
         <mt-button>
           <span>深圳</span>
           <i class="iconfont icon-xiangxia1"></i>
@@ -23,20 +23,18 @@
     </div>
     <div class="cinema-contains">
       <ul class="cinema-wrap">
-        <li>
+        <li class="actors-item"
+            v-for="(item, index) in cinemas"
+            :key="index">
           <div class="cinema-info-lf cinema-info">
-            <span class="cinema-name">英皇电影城（东海缤纷店）</span>
-            <span class="cinema-address">东海国际中心二期B区101之B1002号商铺</span>
+            <span class="cinema-name">{{item.name}}</span>
+            <span class="cinema-address">{{item.address}}</span>
           </div>
           <div class="cinema-info-rt cinema-info">
             <div class="price">
               <span class="cinema-lowPrice price-fmt">
-                <i>￥</i>
-                <span class="money">69</span>
-                <span style="display: none;">.</span>
-                <span></span>
-              </span>
-              <span class="upon">起</span>
+                <i>￥</i><span class="money">{{item.lowPrice}}</span>
+              </span><span class="upon">起</span>
             </div>
             <span class="cinema-gpsAddress">距离未知</span>
           </div>
@@ -48,13 +46,38 @@
 </template>
 
 <script>
-// import axios from 'axios';
 import { Header, Button } from 'mint-ui'
+import axios from 'axios';
 export default {
   name: 'Cinema',
   components: {
     'mt-header': Header,
     'mt-button': Button
+  },
+  data () {
+    return {
+      cinemas: ''
+    }
+  },
+  methods: {
+    getCinemas () {
+      axios.get('/api/cinema/list').then((response) => {
+        // console.log(response);
+        let result = response.data;
+        if (result.code === 0) {
+          let data = result.data;
+          // var arr = [];
+          for (var i = 0; i < data.length; i++) {
+            data[i].lowPrice = data[i].lowPrice / 100;
+          }
+          this.cinemas = data;
+        }
+      })
+    }
+  },
+
+  created () {
+    this.getCinemas();
   }
 };
 </script>
@@ -64,20 +87,30 @@ export default {
 @import "@/styles/common/px2rem.scss";
 
 .cinemas-list {
- flex:1
+ flex:1;
+ overflow: auto;
 }
 .mint-header {
   height: px2rem(44);
-  font-size: px2rem(17);
+  font-size: px2rem(16);
+}
+#header{
+  padding:0 px2rem(15);
+  background:#fff;
+  color: #191a1b;
+  i{
+    font-size: px2rem(18);
+  }
 }
 .cinemas-nav{
   width: 100%;
   position: fixed;
   top: px2rem(44);
   display:flex;
+  background:#fff;
   justify-content: space-between;
   border-bottom: 1px solid #ddd;
-  margin-top:px2rem(10);
+  padding-top:px2rem(10);
   .cinemas-nav-item {
     width: 50%;
     height: px2rem(49);
@@ -141,7 +174,7 @@ export default {
             }
           }
           .upon{
-            font-size:px2rem(12);
+            font-size:px2rem(10);
           }
         }
         .cinema-gpsAddress{

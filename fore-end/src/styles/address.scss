@@ -1,0 +1,168 @@
+
+.main{
+    .city-wrapper{
+      display: flex;
+      overflow: auto;
+      .city-fixed-section{
+        position: fixed;
+        width:100%;
+        z-index:99;
+        header {
+          display: flex;
+          width:100%;
+          height: px2rem(44);
+          line-height: px2rem(44);
+          text-align: center;
+          background: #fff;
+          align-items: center;
+          i{
+            font-size:  px2rem(19);
+            width: 14%;
+
+          }
+          span{
+            font-size:  px2rem(19);
+            width: 72%;
+          }
+          a{
+            width: 14%;
+          }
+        }
+        .city-search{
+          height: px2rem(49);
+          padding: px2rem(9.5) px2rem(15);
+          background-color: #f4f4f4;
+          .city-search-content{
+            background-color: #fff;
+            position: relative;
+            display: inline-block;
+            border-radius:  px2rem(3);
+            width: 100%;
+            height: px2rem(30);
+            i{
+              position: absolute;
+              left: px2rem(7);
+              top: 0;
+              line-height: px2rem(30);
+              font-size:px2rem(16);
+              color: #797d82;
+            }
+            .search-inp{
+              position: absolute;
+              left:px2rem(34);
+              top: 0;
+              height: px2rem(30);
+              font-size:px2rem(12);
+              border: 0;
+            }
+
+          }
+        }
+      }
+
+      .city-list{
+        width: 100%;
+        padding-top:px2rem(100);
+        .gprs-city{
+          padding:  px2rem(15) 0 0 px2rem(15);
+          .gprs-city-now{
+            background-color: #fff;
+            font-size: px2rem(13);
+            color: #797d82;
+            margin-bottom: px2rem(10);
+          }
+          .gprs-city-mes{
+            width: 27%;
+            height: px2rem(30);
+            background-color: #f4f4f4;
+            line-height:  px2rem(30);
+            text-align: center;
+            border-radius: px2rem(3);
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            margin-left: px2rem(10);
+            font-size:  px2rem(14);
+            color: #191a1b;
+          }
+        }
+        .hot-city{
+          padding:  px2rem(15) 0 0 px2rem(15);
+          .hot-city-name{
+            background-color: #fff;
+            font-size: px2rem(13);
+            color: #797d82;
+            margin-bottom: px2rem(10);
+          }
+          .hot-city-wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            height: 100%;
+            li{
+              width:27%;
+              height: px2rem(30);
+              background-color: #f4f4f4;
+              line-height:  px2rem(30);
+              text-align: center;
+              border-radius: px2rem(3);
+              // -webkit-box-sizing: border-box;
+              // box-sizing: border-box;
+              margin: px2rem(8) px2rem(8);
+              font-size:  px2rem(14);
+              color: #191a1b;
+            }
+          }
+        }
+
+      }
+
+      .all-city{
+        .all-city-content{
+          .city-part{
+            padding-right: px2rem(20);
+            P{
+              background-color: #f4f4f4;
+              color: #797d82;
+              border-radius: px2rem(3);
+              // width: 94%;
+              padding: 0 0 0 px2rem(15);
+              height: px2rem(30);
+              line-height: px2rem(30);
+              box-sizing: border-box;
+              font-size: px2rem(13);
+
+            }
+            ul{
+              display: flex;
+              flex-wrap: wrap;
+              padding: 0 0 0 px2rem(15);
+              li{
+                font-size: px2rem(15);
+                width:33%;
+                color: #191a1b;
+                box-sizing: border-box;
+                line-height: px2rem(48);
+                height: px2rem(48);
+                text-align: center;
+                border-bottom: 1px solid #ededed;
+
+              }
+            }
+          }
+
+        }
+        .all-city-index{
+          position: fixed;
+          top: px2rem(205);
+          right: 0;
+          li{
+            font-size: px2rem(12);
+            padding: 0 px2rem(3);
+            color: #191a1b;
+          }
+        }
+      }
+
+    }
+}
+

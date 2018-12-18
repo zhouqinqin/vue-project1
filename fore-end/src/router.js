@@ -73,11 +73,19 @@ const router = new VueRouter({
       name: 'filmDetail',
       component: () => import('./views/FilmDetail.vue')
     },
+    // 登录页面
     {
       path: '/login',
-      name: 'filmDetail',
+      name: 'Login',
       component: () => import('./views/Login.vue')
     },
+    // 地址页面
+    {
+      path: '/address',
+      name: 'Address',
+      component: () => import('./views/Address.vue')
+    },
+    // 默认页面
     {
       path: '*',
       redirect: '/films/nowPlaying'

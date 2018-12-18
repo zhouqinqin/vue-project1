@@ -5,7 +5,8 @@
         <i class="iconfont icon-filedicon_my_green_"></i>
       </div>
       <h2>
-        <a href="/login">立即登录</a>
+        <!-- <a href="/login">立即登录</a> -->
+        <router-link to="/login" >立即登录</router-link>
       </h2>
     </header>
     <main id="main">
