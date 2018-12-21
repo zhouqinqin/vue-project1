@@ -41,6 +41,11 @@ export default {
           id: 'center',
           name: '我的',
           icon: 'iconfont icon-wode'
+        },
+        {
+          id: 'cart',
+          name: '购物车',
+          icon: 'iconfont icon-gouwuche'
         }
       ]
     }
@@ -54,19 +59,20 @@ export default {
 .nav-bar{
     flex-shrink: 0;//不受兄弟挤压
     display:flex;
-    height: px2rem(50);
+    // height: px2rem(50);
     border-top: px2rem(1) solid #ededed;
     li{
+      padding-top:px2rem(8);
         display:flex;
         flex-direction: column;
         align-items:center;
-        width: 25%;
+        width: 20%;
         height: px2rem(49);
         text-align: center;
-        font-size: px2rem(12);
+        font-size: px2rem(10);
         color: #797d82;
         i{
-            font-size:px2rem(29);
+            font-size:px2rem(25);
         }
     }
     .z-act {

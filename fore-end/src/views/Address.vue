@@ -3,14 +3,14 @@
     <div class="city-wrapper">
       <div class="city-fixed-section">
         <header>
-          <i class="iconfont icon-error"></i>
+          <i class="iconfont icon-error" @click="exit"></i>
           <span>当前城市</span>
           <a></a>
         </header>
         <div class="city-search">
           <div class="city-search-content">
             <i class="iconfont icon-sousuo"></i>
-            <input type="text" class="search-inp" placeholder="输入城市名或者拼音">
+            <input type="text" class="search-inp" style="outline:none" placeholder="输入城市名或者拼音">
           </div>
         </div>
       </div>
@@ -24,123 +24,29 @@
         <div class="hot-city">
           <p class="hot-city-name">热门城市</p>
           <ul class="hot-city-wrapper">
-            <li>北京</li>
-            <li>上海</li>
-            <li>广州</li>
-            <li>深圳</li>
+            <li v-for="(item, index) in hotAddList" :key="index">{{ item.name }}</li>
           </ul>
         </div>
         <div class="all-city">
           <ul class="all-city-content">
-            <li class="city-part">
-              <P>A</P>
+            <li class="city-part"
+            v-for="(item, index) in cityList"
+            :key="index">
+              <P>{{item.py}}</P>
               <ul>
-                <li>鞍山</li>
-                <li>安庆</li>
+                <li v-for="(items, i) in item.list" :key="i">
+                  {{items.name}}
+                </li>
+                <!-- <li>安庆</li>
                 <li>安阳</li>
                 <li>安顺</li>
-                <li>安康</li>
-              </ul>
-            </li>
-            <li class="city-part">
-              <P>B</P>
-              <ul>
-                <li>北京</li>
-                <li>保定</li>
-                <li>包头</li>
-                <li>巴彦淖尔</li>
-                <li>本溪</li>
-                <li>白山</li>
-                <li>白城</li>
-                <li>蚌埠</li>
-                <li>亳州</li>
-                <li>滨州</li>
-                <li>北海</li>
-                <li>百色</li>
-                <li>巴中</li>
-                <li>毕节</li>
-                <li>保山</li>
-                <li>宝鸡</li>
-                <li>白银</li>
-              </ul>
-            </li>
-            <li class="city-part">
-              <p>C</p>
-              <ul>
-                <li>承德</li>
-                <li>沧州</li>
-                <li>长治</li>
-                <li>赤峰</li>
-                <li>朝阳</li>
-                <li>长春</li>
-                <li>常州</li>
-                <li>滁州</li>
-                <li>长沙</li>
-                <li>常德</li>
-                <li>郴州</li>
-                <li>潮州</li>
-                <li>重庆</li>
-                <li>成都</li>
-                <li>楚雄彝族自治州</li>
-                <li>澄迈县</li>
-                <li>昌江黎族自治县</li>
-              </ul>
-            </li>
-            <li class="city-part">
-              <p>D</p>
-              <ul>
-                <li>大同</li>
-                <li>大连</li>
-                <li>丹东</li>
-                <li>大庆</li>
-                <li>东营</li>
-                <li>德州</li>
-                <li>东莞</li>
-                <li>儋州</li>
-                <li>德阳</li>
-                <li>达州</li>
-                <li>大理白族自治州</li>
-                <li>定西</li>
-              </ul>
-            </li>
-
-            <li class="city-part">
-              <p>E</p>
-              <ul>
-                <li>鄂尔多斯</li>
-                <li>鄂州</li>
-                <li>恩施土家族苗族</li>
+                <li>安康</li> -->
               </ul>
             </li>
           </ul>
 
-          <!-- <ul>
-            <li>&nbsp;&nbsp;&nbsp;</li>
-          </ul> -->
-
           <ul class="all-city-index">
-            <li>A</li>
-            <li>B</li>
-            <li>C</li>
-            <li>D</li>
-            <li>E</li>
-            <li>F</li>
-            <li>G</li>
-            <li>H</li>
-            <li>J</li>
-            <li>K</li>
-            <li>L</li>
-            <li>M</li>
-            <li>N</li>
-            <li>P</li>
-            <li>Q</li>
-            <li>R</li>
-            <li>S</li>
-            <li>T</li>
-            <li>W</li>
-            <li>X</li>
-            <li>Y</li>
-            <li>Z</li>
+            <li v-for="(item, index) in indexList" :key="index">{{ item }}</li>
           </ul>
         </div>
       </div>
@@ -152,31 +58,72 @@
 import axios from 'axios';
 export default {
   name: 'Address',
-  // components: {
+  components: {
 
-  // },
+  },
   data () {
     return {
-      addressList: ''
+      addressList: [],
+      cityList: [],
+      indexList: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     };
   },
+
+  computed: {
+    hotAddList () {
+      return this.addressList.filter(item => {
+        return item.isHot === 1
+      })
+    }
+  },
+
   methods: {
     getAddress () {
       axios.get('/api/address/list').then(response => {
-        // console.log(response);
-        let result = response.data;
-        if (result.code === 0) {
+        if (response.data.code === 0) {
+          var result = response.data;
           let data = result.data;
-          this.addressList = data;
+          this.addressList = this.addressList.concat(data);
+          this.city();
         }
-      });
+      })
+    },
+    city () {
+      let i = 0;
+      let hash = {};
+      let res = [];
+      let zimu = [];
+      this.addressList.forEach(item => {
+      // 拿到所有城市和首字母
+        let py = item.pinyin.substring(0, 1).toUpperCase();
+        if (hash[py]) {
+          res[hash[py] - 1].list.push(item);
+        } else {
+          zimu.push(py);
+          hash[py] = ++i;
+          res.push({
+            py: py,
+            list: [item]
+          })
+          this.cityList = res;
+          // 根据首字母排列所有城市
+          this.citylist = res.sort(function (a, b) {
+            return (a.py).localeCompare((b.py));
+          });
+        }
+      })
+      // console.log(this.cityList)
+    },
+    // 退出
+    exit () {
+      this.$router.go(-1);
     }
   },
 
   created () {
     this.getAddress();
   }
-};
+}
 </script>
 
 <style lang="scss">

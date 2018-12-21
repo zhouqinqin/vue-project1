@@ -61,7 +61,7 @@
       }
 
       .city-list{
-        width: 100%;
+        width: 98%;
         padding-top:px2rem(100);
         .gprs-city{
           padding:  px2rem(15) 0 0 px2rem(15);
@@ -145,7 +145,10 @@
                 height: px2rem(48);
                 text-align: center;
                 border-bottom: 1px solid #ededed;
-
+                overflow: hidden;
+                -o-text-overflow: ellipsis;
+                text-overflow: ellipsis;
+                white-space: nowrap;
               }
             }
           }
@@ -153,11 +156,11 @@
         }
         .all-city-index{
           position: fixed;
-          top: px2rem(205);
+          top: px2rem(200);
           right: 0;
           li{
             font-size: px2rem(12);
-            padding: 0 px2rem(3);
+            padding: px2rem(3) px2rem(3);
             color: #191a1b;
           }
         }

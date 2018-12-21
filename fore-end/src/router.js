@@ -57,7 +57,6 @@ const router = new VueRouter({
           name: 'center',
           component: () => import('./views/Center.vue')
         }
-
       ]
     },
 
@@ -66,6 +65,12 @@ const router = new VueRouter({
       path: '/tuan',
       name: 'tuan',
       component: () => import('./views/Tuan.vue')
+    },
+    {
+      // 购物车页
+      path: 'cart',
+      name: 'cart',
+      component: () => import('./views/Cart.vue')
     },
     {
       // 详情页面
