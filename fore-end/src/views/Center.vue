@@ -6,7 +6,7 @@
       </div>
       <h2>
         <!-- <a href="/login">立即登录</a> -->
-        <router-link to="/login" >立即登录</router-link>
+        <router-link to="/login" >{{userName}}</router-link>
       </h2>
     </header>
     <main id="main">
@@ -56,7 +56,26 @@
 
 <script>
 export default {
-  name: 'Center'
+  name: 'Center',
+  data () {
+    return {
+      userName: ''
+    }
+  },
+  methods: {
+    getuserName () {
+      var name = localStorage.getItem('userName');
+      // console.log(name)
+      if (name) {
+        this.userName = name;
+      } else {
+        this.userName = '立即登录';
+      }
+    }
+  },
+  created () {
+    this.getuserName();
+  }
 };
 </script>
 

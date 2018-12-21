@@ -1,13 +1,7 @@
 <template>
   <div class="center-view">
     <header id="header">
-      <div class="logo">
-        <i class="iconfont icon-filedicon_my_green_"></i>
-      </div>
-      <h2>
-        <!-- <a href="/login">立即登录</a> -->
-        <router-link to="/login" >立即登录</router-link>
-      </h2>
+      9.9拼团
     </header>
     <main id="main">
       <div class="film-order">
@@ -70,31 +64,11 @@ export default {
 
 #header {
   height: px2rem(200);
-  background: url('../../static/images/bg.043a928.png') no-repeat;
-  background-size: 100%;
+  background: #ddd;
+  justify-content: center;
   display: flex;
-  .logo {
-    height: px2rem(67);
-    width: px2rem(67);
-    border: px2rem(2) solid white;
-    background:url('../../static/images/log.png') no-repeat;
-    border-radius: 50%;
-    align-self: center;
-    margin-left: px2rem(20);
-    .iconfont {
-      font-size: px2rem(30);
-      color: white;
-    }
-  }
-  h2 {
-    font-size: px2rem(16);
-    align-self: center;
-    margin-left: px2rem(20);
-    a {
-      color: white;
-      text-decoration: none;
-    }
-  }
+  align-items: center;
+  color: #fff;
 }
 #main {
   flex: 1;

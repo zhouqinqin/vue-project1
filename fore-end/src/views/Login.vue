@@ -8,18 +8,18 @@
       <div>
         <form action="#">
           <div class="phone">
-            <input type="tel" maxlength="13" placeholder="手机号" class="input-control">
+            <input type="tel" maxlength="13" placeholder="手机号" class="input-control" v-model="phoneInput">
             <div class="getSmsCode">
                 获取验证码
             </div>
           </div>
 
           <div class="form-group">
-            <input placeholder="验证码" class="input-control">
+            <input placeholder="验证码" class="input-control" v-model="codeInput">
           </div>
 
-          <div class="submit login-btn">
-            <span>登录</span>
+          <div class="submit login-btn" @click="loginTo" @keyup.13="loginTo">
+            <span :class="checkInput?'':'loginStart'">登录</span>
           </div>
         </form>
       </div>
@@ -28,8 +28,46 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-  name: 'Login'
+  name: 'Login',
+  data () {
+    return {
+      phoneInput: '',
+      codeInput: ''
+    }
+  },
+
+  computed: {
+    checkInput () {
+      if (this.phoneInput && this.codeInput) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
+
+  methods: {
+    loginTo () {
+      axios.get('../../static/api/user.json', {
+        params: {
+          phone: this.phoneInput,
+          code: this.codeInput
+        }
+      }).then(res => {
+        console.log(res.data.tel);
+        let result = res.data;
+        if (result.tel === this.phoneInput && result.code === this.codeInput) {
+          localStorage.setItem('userName', '李四');
+          this.$router.go(-1);
+        } else {
+          alert('用户名或密码错误');
+          this.$router.go(0);
+        }
+      });
+    }
+  }
 }
 </script>
 
@@ -89,6 +127,9 @@ export default {
 
     span {
       opacity: 0.3;
+    }
+    .loginStart {
+      opacity: 1 !important;
     }
   }
 

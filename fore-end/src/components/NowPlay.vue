@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="film-buying">
-        <span>购票</span>
+        <span @click.capture="buying">购票</span>
       </div>
     </li>
     <div class="load-more" @click="loadMore">{{ loadMoreText }}</div>
@@ -35,7 +35,7 @@
 
 <script>
 import axios from 'axios';
-// 暴露组件``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+// 暴露组件
 export default {
   name: 'nowplaying',
   data () {
@@ -59,6 +59,7 @@ export default {
           isPresale: true
         }
       }).then((response) => {
+        // console.log(res)
         // PS: res 不单单包含后台给的数据，还有一些个额外的东西。
         let result = response.data;
         // console.log(result);
@@ -96,13 +97,15 @@ export default {
     // 点击进入详情页
     goDetail (id) {
       this.$router.push({
-        // path: '/film/' + id,
-        // path: `/film/${id}`,
         name: 'filmDetail',
         params: {
           filmId: id
         }
       })
+    },
+    // 点击购买，默认点击一次加一
+    buying (id) {
+
     }
   },
 

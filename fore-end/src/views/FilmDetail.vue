@@ -56,7 +56,9 @@
     <div class="photos">
 
     </div>
-    <mt-button class="buy-btn" type="default">选座购票</mt-button>
+    <router-link :to="'/film/'+filmId+'/cinemas'">
+      <mt-button class="buy-btn" type="default">选座购票</mt-button>
+    </router-link>
   </div>
 </template>
 
@@ -73,8 +75,8 @@ export default {
   data () {
     return {
       film: '',
-      actors: []
-
+      actors: [],
+      filmId: ''
     }
   },
 
@@ -107,11 +109,16 @@ export default {
           alert(result.msg)
         }
       })
+    },
+    getId () {
+      let filmId = this.$route.params.filmId;
+      this.filmId = filmId;
     }
   },
 
   created () {
     this.getFilmDetail();
+    this.getId();
   }
 }
 </script>

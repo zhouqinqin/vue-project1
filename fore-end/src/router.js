@@ -68,7 +68,7 @@ const router = new VueRouter({
     },
     {
       // 购物车页
-      path: 'cart',
+      path: '/cart',
       name: 'cart',
       component: () => import('./views/Cart.vue')
     },
@@ -78,6 +78,30 @@ const router = new VueRouter({
       name: 'filmDetail',
       component: () => import('./views/FilmDetail.vue')
     },
+    {
+      // 电影详情页带ID到影院
+      path: '/film/:filmId/cinemas',
+      component: () => import('./views/Cinema.vue')
+    },
+    {
+      // 电影详情页带ID购物车页
+      // path: '/buying/:filmId+:cinemaId+:lowPrice',
+      path: '/buying/:filmId/:cinemaId/:lowPrice',
+      name: 'Buying',
+      component: () => import('./views/Cart.vue'),
+      beforeEnter (to, from, next) {
+        if (localStorage.getItem('userName')) {
+          next();
+        } else {
+          next({
+            path: '/login',
+            name: 'Login',
+            redirect: '/login'
+          });
+        }
+      }
+    },
+
     // 登录页面
     {
       path: '/login',

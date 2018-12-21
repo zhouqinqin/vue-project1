@@ -14,7 +14,9 @@
     <div class="cinemas-nav">
       <div class="cinemas-nav-item cinemas-adress">
         <span>深圳</span>
-        <i  class="iconfont icon-xiangxia1"></i>
+        <router-link to="/address" tag='i'>
+          <i  class="iconfont icon-xiangxia1"></i>
+        </router-link>
       </div>
       <div class="cinemas-nav-item  cinemas-gone">
         <span>最近去过</span>
@@ -27,7 +29,11 @@
             v-for="(item, index) in cinemas"
             :key="index">
           <div class="cinema-info-lf cinema-info">
-            <span class="cinema-name">{{item.name}}</span>
+            <router-link
+            :to="'/buying/' + filmId +'/'+ item.cinemaId+'/' + item.lowPrice"
+             tag='span'>
+              <span class="cinema-name">{{item.name}}</span>
+            </router-link>
             <span class="cinema-address">{{item.address}}</span>
           </div>
           <div class="cinema-info-rt cinema-info">
@@ -56,7 +62,8 @@ export default {
   },
   data () {
     return {
-      cinemas: ''
+      cinemas: '',
+      filmId: ''
     }
   },
   methods: {
@@ -73,11 +80,18 @@ export default {
           this.cinemas = data;
         }
       })
+    },
+    getFilmId () {
+      let filmId = this.$route.params.filmId;
+      this.filmId = filmId;
+    },
+    setLocalstorage () {
+      localStorage.setItem('Films', {'filmId': this.filmId});
     }
   },
-
   created () {
     this.getCinemas();
+    this.getFilmId();
   }
 };
 </script>
